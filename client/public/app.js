@@ -11,11 +11,12 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
   // State Manager
   // ============================================================
   const state = {
-    currentLevel: 0,
+    currentLevel: "frontrooms",
     isLoading: false,
     history: [],
     glitchIntensity: 0,
-    tapeIndexes: {}
+    tapeIndexes: {},
+    imageIndexes: {}
   };
 
   const runtime = {
@@ -32,7 +33,7 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
   // Utility Functions
   // ============================================================
   const REQUIRED_BASIC_FIELDS = [
-    "id", "name", "imageUrl", "entities", "entrances", "exits", "size", "survivalClass", "credits"
+    "id", "displayId", "name", "overview", "imageUrl", "imageUrls", "entities", "entrances", "exits", "size", "survivalClass", "credits"
   ];
 
   const REQUIRED_ADVANCED_FIELDS = [
@@ -71,12 +72,28 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
     return Array.isArray(value) ? value : [String(value)];
   }
 
-  function formatLevelId(id) {
-    return `LEVEL ${String(id).padStart(3, "0")}`;
+  function idKey(value) {
+    return String(value);
+  }
+
+  function sameId(a, b) {
+    return idKey(a) === idKey(b);
   }
 
   function getLevelById(levelId) {
-    return window.levels.find((level) => level.id === Number(levelId));
+    return window.levels.find((level) => sameId(level.id, levelId));
+  }
+
+  function getLevelIndex(levelId) {
+    return window.levels.findIndex((level) => sameId(level.id, levelId));
+  }
+
+  function formatLevelId(idOrLevel) {
+    const level = typeof idOrLevel === "object" && idOrLevel ? idOrLevel : getLevelById(idOrLevel);
+    if (level && level.displayId) return level.displayId;
+    const numeric = Number(idOrLevel);
+    if (Number.isInteger(numeric) && numeric >= 0 && numeric <= 100) return `LEVEL ${String(numeric).padStart(3, "0")}`;
+    return String(idOrLevel).toUpperCase();
   }
 
   function hexToRgb(hex) {
@@ -118,7 +135,7 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
   }
 
   function summarizeLevel(level) {
-    return `${level.survivalClass.description} Entradas principais: ${level.entrances} Registro de risco: ${level.toxicity}`;
+    return `${level.overview || level.survivalClass.description} Registro de risco: ${level.toxicity}`;
   }
 
   function makeList(items) {
@@ -170,7 +187,7 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
   function validateLevelsData(levels) {
     const errors = [];
     if (!Array.isArray(levels)) return ["Variável global levels não é um array."];
-    if (levels.length !== 101) errors.push(`Esperados 101 níveis, encontrados ${levels.length}.`);
+    if (levels.length !== 112) errors.push(`Esperados 112 registros, encontrados ${levels.length}.`);
 
     const seen = new Set();
     levels.forEach((level, index) => {
@@ -178,11 +195,15 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
         if (!(field in level)) errors.push(`Level índice ${index}: campo obrigatório ausente: ${field}.`);
       });
 
-      if (typeof level.id !== "number" || level.id < 0 || level.id > 100) errors.push(`Level índice ${index}: id fora de 0–100.`);
-      if (seen.has(level.id)) errors.push(`Level ${level.id}: id duplicado.`);
-      seen.add(level.id);
+      if (!["number", "string"].includes(typeof level.id) || String(level.id).trim() === "") errors.push(`Level índice ${index}: id inválido.`);
+      const key = idKey(level.id);
+      if (seen.has(key)) errors.push(`Level ${level.id}: id duplicado.`);
+      seen.add(key);
       if (typeof level.name !== "string" || !level.name.trim()) errors.push(`Level ${level.id}: name inválido.`);
       if (typeof level.imageUrl !== "string" || !level.imageUrl.trim()) errors.push(`Level ${level.id}: imageUrl inválido.`);
+      if (!Array.isArray(level.imageUrls) || level.imageUrls.length === 0) errors.push(`Level ${level.id}: imageUrls precisa ser array não vazio.`);
+      if (typeof level.overview !== "string" || !level.overview.trim()) errors.push(`Level ${level.id}: overview inválido.`);
+      if (typeof level.displayId !== "string" || !level.displayId.trim()) errors.push(`Level ${level.id}: displayId inválido.`);
       if (!Array.isArray(level.entities)) errors.push(`Level ${level.id}: entities precisa ser array.`);
       if (!Array.isArray(level.availableLoot)) errors.push(`Level ${level.id}: availableLoot precisa ser array.`);
       if (!Array.isArray(level.outposts)) errors.push(`Level ${level.id}: outposts precisa ser array.`);
@@ -203,8 +224,11 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
     });
 
     for (let id = 0; id <= 100; id += 1) {
-      if (!seen.has(id)) errors.push(`Level ${id}: registro ausente.`);
+      if (!seen.has(String(id))) errors.push(`Level ${id}: registro ausente.`);
     }
+    ["frontrooms", "fun", "!", "404", "-1", "999", "9223372036854775807", "the-end", "-33", "3999", "hub"].forEach((id) => {
+      if (!seen.has(id)) errors.push(`Registro especial ausente: ${id}.`);
+    });
     return errors;
   }
 
@@ -222,7 +246,8 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
     root.style.setProperty("--text-color", safeText);
     root.style.setProperty("--accent-color", colors.accent);
     root.style.setProperty("--font-family", "Courier New, Courier, monospace");
-    setGlitchIntensity(abrupt ? 8 : (level.easterEgg ? 2.2 : 1 + (level.id % 4) * 0.45));
+    const levelIndex = Math.max(0, getLevelIndex(level.id));
+    setGlitchIntensity(abrupt ? 8 : (level.easterEgg ? 2.2 : 1 + (levelIndex % 4) * 0.45));
 
     if (abrupt) {
       document.body.classList.add("violent-glitch");
@@ -237,7 +262,7 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
     const filtered = window.levels.filter((level) => {
       const term = runtime.searchTerm.trim().toLowerCase();
       if (!term) return true;
-      return String(level.id).includes(term) || level.name.toLowerCase().includes(term) || level.geometry.toLowerCase().includes(term);
+      return String(level.id).includes(term) || formatLevelId(level).toLowerCase().includes(term) || level.name.toLowerCase().includes(term) || level.geometry.toLowerCase().includes(term);
     });
 
     const fragment = document.createDocumentFragment();
@@ -245,9 +270,9 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
       const button = createNode("button", "level-button");
       button.type = "button";
       button.dataset.levelId = String(level.id);
-      button.setAttribute("aria-current", level.id === state.currentLevel ? "page" : "false");
-      if (level.id === state.currentLevel) button.classList.add("active");
-      button.appendChild(createNode("span", "", formatLevelId(level.id)));
+      button.setAttribute("aria-current", sameId(level.id, state.currentLevel) ? "page" : "false");
+      if (sameId(level.id, state.currentLevel)) button.classList.add("active");
+      button.appendChild(createNode("span", "", formatLevelId(level)));
       button.appendChild(createNode("span", "", level.name.replace(/^Level \d+ — /, "")));
       fragment.appendChild(button);
     });
@@ -255,12 +280,28 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
     dom.levelList.replaceChildren(fragment);
   }
 
+  function getLevelImages(level) {
+    const images = Array.isArray(level.imageUrls) ? level.imageUrls.filter(Boolean) : [];
+    if (images.length > 0) return images;
+    return level.imageUrl ? [level.imageUrl] : [];
+  }
+
+  function getImageIndex(level) {
+    const images = getLevelImages(level);
+    if (images.length === 0) return 0;
+    const stored = Number(state.imageIndexes[idKey(level.id)] || 0);
+    return ((stored % images.length) + images.length) % images.length;
+  }
+
   function createImagePanel(level) {
+    const images = getLevelImages(level);
+    const index = getImageIndex(level);
     const wrap = createNode("figure", "hero-image-wrap");
+    wrap.dataset.levelId = String(level.id);
     const img = document.createElement("img");
-    img.alt = `${level.name}: registro visual recuperado`;
+    img.alt = `${level.name}: registro visual recuperado ${index + 1}`;
     img.decoding = "async";
-    img.loading = level.id === state.currentLevel ? "eager" : "lazy";
+    img.loading = sameId(level.id, state.currentLevel) ? "eager" : "lazy";
 
     img.addEventListener("error", () => {
       const fallback = createNode("div", "fallback-image");
@@ -271,18 +312,45 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
       wrap.replaceChildren(fallback);
     }, { once: true });
 
-    img.src = level.imageUrl;
+    img.src = images[index] || level.imageUrl;
     wrap.appendChild(img);
 
     if (level.imageCredit) {
       const credit = createNode("figcaption", "hero-image-credit");
       const source = level.imageCredit.source || "public image archive";
       const title = level.imageCredit.title || "Recovered real-world visual reference";
-      credit.textContent = `REAL IMAGE // ${title} // ${source}`;
+      credit.textContent = `REAL IMAGE // ${title} // ${source} // ${String(index + 1).padStart(2, "0")}/${String(images.length || 1).padStart(2, "0")}`;
       wrap.appendChild(credit);
     }
 
+    if (images.length > 1) {
+      const controls = createNode("div", "tape-controls image-scan-controls");
+      const scanButton = createNode("button", "tape-button", "SCAN NEXT IMAGE // ESCANEAR PRÓXIMA IMAGEM");
+      scanButton.type = "button";
+      scanButton.dataset.action = "scan-next-image";
+      scanButton.dataset.levelId = String(level.id);
+      scanButton.setAttribute("aria-label", `Escanear próxima imagem pública para ${level.name}`);
+      const status = createNode("p", "tape-status", `VISUAL SOURCE: ${String(index + 1).padStart(2, "0")}/${String(images.length).padStart(2, "0")}. Use quando a fita visual parecer corrompida.`);
+      appendChildren(controls, [scanButton, status]);
+      wrap.appendChild(controls);
+    }
+
     return wrap;
+  }
+
+  function cycleImage(levelId) {
+    const level = getLevelById(levelId);
+    if (!level) return;
+    const images = getLevelImages(level);
+    if (images.length < 2) return;
+    const nextIndex = (getImageIndex(level) + 1) % images.length;
+    state.imageIndexes[idKey(level.id)] = nextIndex;
+    playClickTone("click");
+    setGlitchIntensity(4.8);
+    const currentPanel = document.querySelector(`.hero-image-wrap[data-level-id="${CSS.escape(String(level.id))}"]`);
+    const nextPanel = createImagePanel(level);
+    if (currentPanel && nextPanel) currentPanel.replaceWith(nextPanel);
+    window.setTimeout(() => setGlitchIntensity(level.easterEgg ? 2.2 : 1.1), 220);
   }
 
   function createMetaStrip(level) {
@@ -445,7 +513,7 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
     state.currentLevel = level.id;
     runtime.renderedLevel = level.id;
     applyTheme(level, false);
-    document.title = `${formatLevelId(level.id)} // The Backrooms Database`;
+    document.title = `${formatLevelId(level)} // The Backrooms Database`;
 
     const fragment = document.createDocumentFragment();
     const dossier = createNode("article", "dossier");
@@ -453,7 +521,7 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
     const copy = createNode("div", "hero-copy");
     const headerGroup = createNode("div");
 
-    headerGroup.appendChild(createNode("span", "level-id", formatLevelId(level.id)));
+    headerGroup.appendChild(createNode("span", "level-id", formatLevelId(level)));
     headerGroup.appendChild(createNode("h2", "", level.name));
     headerGroup.appendChild(createNode("p", "hero-summary", summarizeLevel(level)));
 
@@ -467,6 +535,7 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
     hero.appendChild(createImagePanel(level));
     dossier.appendChild(hero);
     dossier.appendChild(createMetaStrip(level));
+    dossier.appendChild(createCard("Descrição do Nível", level.overview));
     const tapePanel = createTapePanel(level);
     if (tapePanel) dossier.appendChild(tapePanel);
 
@@ -530,7 +599,7 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
 
   async function runLoadingSequence(levelId) {
     const lines = [
-      `> Accessing LEVEL_${String(levelId).padStart(3, "0")}_DOSSIER...`,
+      `> Accessing ${formatLevelId(levelId).replace(/\s+/g, "_")}_DOSSIER...`,
       "> Decrypting sealed incident packets...",
       "> Rendering anomalies...",
       "> Checking survivor contradiction index..."
@@ -551,14 +620,14 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
   // Navigation Controller
   // ============================================================
   async function navigateToLevel(levelId, options = {}) {
-    const target = Number(levelId);
-    if (state.isLoading) return;
-    if (!Number.isInteger(target) || target < 0 || target > 100) return;
-    if (runtime.renderedLevel === target && !options.force) return;
+    const level = getLevelById(levelId);
+    if (state.isLoading || !level) return;
+    const target = level.id;
+    if (sameId(runtime.renderedLevel, target) && !options.force) return;
 
     try {
       await runLoadingSequence(target);
-      if (state.currentLevel !== target || options.force) {
+      if (!sameId(state.currentLevel, target) || options.force) {
         state.history.push({ from: state.currentLevel, to: target, at: new Date().toISOString() });
       }
       renderLevel(target);
@@ -571,12 +640,13 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
   }
 
   function teleportRandom(aggressive) {
-    const current = state.currentLevel;
-    let target = randomInt(0, 100);
-    if (target === current) target = (target + randomInt(7, 31)) % 101;
+    const currentIndex = Math.max(0, getLevelIndex(state.currentLevel));
+    let targetIndex = randomInt(0, window.levels.length - 1);
+    if (targetIndex === currentIndex) targetIndex = (targetIndex + randomInt(7, 31)) % window.levels.length;
+    const target = window.levels[targetIndex]?.id;
     if (aggressive) {
       playClickTone("teleport");
-      applyTheme(getLevelById(target) || getLevelById(current), true);
+      applyTheme(getLevelById(target) || getLevelById(state.currentLevel), true);
     }
     navigateToLevel(target, { force: true });
   }
@@ -589,24 +659,29 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
       const button = event.target.closest("button[data-level-id]");
       if (!button) return;
       playClickTone("click");
-      navigateToLevel(Number(button.dataset.levelId));
+      navigateToLevel(button.dataset.levelId);
     });
 
     dom.content.addEventListener("click", (event) => {
       const actionTarget = event.target.closest("[data-action]");
       const action = actionTarget?.dataset.action;
       if (action === "easter-teleport") teleportRandom(true);
-      if (action === "search-new-tape") cycleTape(Number(actionTarget.dataset.levelId));
+      if (action === "search-new-tape") cycleTape(actionTarget.dataset.levelId);
+      if (action === "scan-next-image") cycleImage(actionTarget.dataset.levelId);
     });
 
     dom.prevLevel.addEventListener("click", () => {
       playClickTone("click");
-      navigateToLevel((state.currentLevel + 100) % 101);
+      const currentIndex = Math.max(0, getLevelIndex(state.currentLevel));
+      const target = window.levels[(currentIndex + window.levels.length - 1) % window.levels.length];
+      navigateToLevel(target.id);
     });
 
     dom.nextLevel.addEventListener("click", () => {
       playClickTone("click");
-      navigateToLevel((state.currentLevel + 1) % 101);
+      const currentIndex = Math.max(0, getLevelIndex(state.currentLevel));
+      const target = window.levels[(currentIndex + 1) % window.levels.length];
+      navigateToLevel(target.id);
     });
 
     dom.randomLevel.addEventListener("click", () => teleportRandom(false));
