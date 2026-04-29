@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Backrooms Database: arquivo militar corrompido sobre os níveis 0 a 100." />
+  <meta name="theme-color" content="#080b06" />
+  <title>The Backrooms Database</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="crt-layer scanlines" aria-hidden="true"></div>
+  <div class="crt-layer noise" aria-hidden="true"></div>
+  <div class="crt-layer vignette" aria-hidden="true"></div>
+
+  <div id="loadingOverlay" class="loading-overlay" aria-live="assertive" aria-hidden="true">
+    <div class="loading-terminal">
+      <p class="classified">CLASSIFIED CHANNEL // LEVEL INDEX BRIDGE</p>
+      <pre id="loadingText"></pre>
+    </div>
+  </div>
+
+  <div id="app" class="app-shell">
+    <aside class="sidebar" aria-label="Índice de níveis das Backrooms">
+      <header class="sidebar-header">
+        <p class="kicker">M.E.G. ARCHIVE MIRROR</p>
+        <h1>The Backrooms Database</h1>
+        <p class="system-status">STATUS: <span>unstable but readable</span></p>
+      </header>
+
+      <section class="sidebar-controls" aria-label="Controles do terminal">
+        <label for="levelSearch">Pesquisar nível</label>
+        <input id="levelSearch" type="search" placeholder="ex.: 0, pipes, motel" autocomplete="off" />
+        <div class="control-grid">
+          <button id="prevLevel" type="button">Anterior</button>
+          <button id="nextLevel" type="button">Próximo</button>
+          <button id="randomLevel" type="button">Aleatório</button>
+          <button id="audioToggle" type="button" aria-pressed="false">Áudio OFF</button>
+        </div>
+      </section>
+
+      <nav class="level-nav" aria-label="Lista de níveis">
+        <div id="levelList" class="level-list"></div>
+      </nav>
+    </aside>
+
+    <main class="content-frame" aria-live="polite">
+      <section id="content" class="content"></section>
+    </main>
+  </div>
+
+  <noscript>
+    <section class="noscript-warning">
+      Este arquivo exige JavaScript para renderizar o banco de dados dinâmico. Sem ele, o terminal permanece em branco por contenção.
+    </section>
+  </noscript>
+
+  <script src="/data.js" defer></script>
+  <script src="/app.js" defer></script>
+</body>
+</html>
