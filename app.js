@@ -24,8 +24,217 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
     validated: false,
     audioEnabled: false,
     audioContext: null,
-    searchTerm: ""
+    searchTerm: "",
+    language: localStorage.getItem("backrooms_lang") || "pt-BR"
   };
+
+  const translations = {
+    "pt-BR": {
+      searchPlaceholder: "ex.: 0, pipes, motel",
+      prev: "Anterior",
+      next: "Próximo",
+      random: "Aleatório",
+      audioOn: "Áudio ON",
+      audioOff: "Áudio OFF",
+      status: "STATUS: unstable but readable",
+      searchLabel: "Pesquisar nível",
+      survivalClass: "Classificação de Sobrevivência",
+      levelDescription: "Descrição do Nível",
+      entrances: "Entradas",
+      exits: "Saídas",
+      entities: "Entidades",
+      loot: "Loot disponível",
+      telemetry: "Telemetria Anômala",
+      ambientSounds: "Sons Ambientais",
+      physicalAnomalies: "Anomalias Físicas",
+      outposts: "Outposts",
+      floraFauna: "Flora / Fauna",
+      survivorLog: "REGISTRO DE SOBREVIVENTE // transcrição de áudio recuperada",
+      credits: "Créditos do Registro",
+      fields: {
+        "Sanidade": "Sanidade",
+        "Temperatura": "Temperatura",
+        "Luz": "Luz",
+        "Geometria": "Geometria",
+        "Toxicidade": "Toxicidade",
+        "Wi-Fi": "Wi-Fi",
+        "Distorção temporal": "Distorção temporal",
+        "Ciclos": "Ciclos",
+        "Umidade": "Umidade",
+        "Materiais": "Materiais",
+        "Classe": "Classe",
+        "Tamanho": "Tamanho",
+        "Descoberto": "Descoberto",
+        "Baixas": "Baixas"
+      }
+    },
+    "en-US": {
+      searchPlaceholder: "e.g.: 0, pipes, motel",
+      prev: "Previous",
+      next: "Next",
+      random: "Random",
+      audioOn: "Audio ON",
+      audioOff: "Audio OFF",
+      status: "STATUS: unstable but readable",
+      searchLabel: "Search level",
+      survivalClass: "Survival Classification",
+      levelDescription: "Level Description",
+      entrances: "Entrances",
+      exits: "Exits",
+      entities: "Entities",
+      loot: "Available Loot",
+      telemetry: "Anomalous Telemetry",
+      ambientSounds: "Ambient Sounds",
+      physicalAnomalies: "Physical Anomalies",
+      outposts: "Outposts",
+      floraFauna: "Flora / Fauna",
+      survivorLog: "SURVIVOR LOG // recovered audio transcription",
+      credits: "Record Credits",
+      fields: {
+        "Sanidade": "Sanity",
+        "Temperatura": "Temperature",
+        "Luz": "Light",
+        "Geometria": "Geometry",
+        "Toxicidade": "Toxicity",
+        "Wi-Fi": "Wi-Fi",
+        "Distorção temporal": "Time Distortion",
+        "Ciclos": "Cycles",
+        "Umidade": "Humidity",
+        "Materiais": "Materials",
+        "Classe": "Class",
+        "Tamanho": "Size",
+        "Descoberto": "Discovered",
+        "Baixas": "Casualties"
+      }
+    },
+    "es-ES": {
+      searchPlaceholder: "ej.: 0, pipes, motel",
+      prev: "Anterior",
+      next: "Siguiente",
+      random: "Aleatorio",
+      audioOn: "Audio ON",
+      audioOff: "Audio OFF",
+      status: "ESTADO: inestable pero legible",
+      searchLabel: "Buscar nivel",
+      survivalClass: "Clasificación de Supervivencia",
+      levelDescription: "Descripción del Nivel",
+      entrances: "Entradas",
+      exits: "Salidas",
+      entities: "Entidades",
+      loot: "Botín disponible",
+      telemetry: "Telemetría Anómala",
+      ambientSounds: "Sonidos Ambientales",
+      physicalAnomalies: "Anomalías Físicas",
+      outposts: "Puestos de avanzada",
+      floraFauna: "Flora / Fauna",
+      survivorLog: "REGISTRO DE SOBREVIVIENTE // transcripción de audio recuperada",
+      credits: "Créditos del Registro",
+      fields: {
+        "Sanidade": "Sanidad",
+        "Temperatura": "Temperatura",
+        "Luz": "Luz",
+        "Geometria": "Geometría",
+        "Toxicidade": "Toxicidad",
+        "Wi-Fi": "Wi-Fi",
+        "Distorção temporal": "Distorsión temporal",
+        "Ciclos": "Ciclos",
+        "Umidade": "Humedad",
+        "Materiais": "Materiales",
+        "Classe": "Clase",
+        "Tamanho": "Tamaño",
+        "Descoberto": "Descubierto",
+        "Baixas": "Bajas"
+      }
+    },
+    "ja-JP": {
+      searchPlaceholder: "例: 0, パイプ, モーテル",
+      prev: "前へ",
+      next: "次へ",
+      random: "ランダム",
+      audioOn: "オーディオ ON",
+      audioOff: "オーディオ OFF",
+      status: "ステータス: 不安定だが読み取り可能",
+      searchLabel: "レベル検索",
+      survivalClass: "生存難易度クラス",
+      levelDescription: "レベルの説明",
+      entrances: "入口",
+      exits: "出口",
+      entities: "エンティティ",
+      loot: "入手可能な物資",
+      telemetry: "異常テレメトリ",
+      ambientSounds: "環境音",
+      physicalAnomalies: "物理的異常",
+      outposts: "前哨基地",
+      floraFauna: "動植物",
+      survivorLog: "生存者の記録 // 回収された音声の書き起こし",
+      credits: "記録クレジット",
+      fields: {
+        "Sanidade": "正気度",
+        "Temperatura": "温度",
+        "Luz": "光",
+        "Geometria": "幾何学",
+        "Toxicidade": "毒性",
+        "Wi-Fi": "Wi-Fi",
+        "Distorção temporal": "時間歪曲",
+        "Ciclos": "サイクル",
+        "Umidade": "湿度",
+        "Materiais": "材料",
+        "Classe": "クラス",
+        "Tamanho": "サイズ",
+        "Descoberto": "発見日",
+        "Baixas": "犠牲者数"
+      }
+    },
+    "de-DE": {
+      searchPlaceholder: "z.B.: 0, Rohre, Motel",
+      prev: "Zurück",
+      next: "Weiter",
+      random: "Zufällig",
+      audioOn: "Audio AN",
+      audioOff: "Audio AUS",
+      status: "STATUS: instabil, aber lesbar",
+      searchLabel: "Ebene suchen",
+      survivalClass: "Überlebensklassifizierung",
+      levelDescription: "Ebenenbeschreibung",
+      entrances: "Eingänge",
+      exits: "Ausgänge",
+      entities: "Entitäten",
+      loot: "Verfügbare Beute",
+      telemetry: "Anomale Telemetrie",
+      ambientSounds: "Umgebungsgeräusche",
+      physicalAnomalies: "Physische Anomalien",
+      outposts: "Außenposten",
+      floraFauna: "Flora / Fauna",
+      survivorLog: "ÜBERLEBENDEN-LOG // wiederhergestellte Audiotranskription",
+      credits: "Eintrags-Credits",
+      fields: {
+        "Sanidade": "Sanität",
+        "Temperatura": "Temperatur",
+        "Luz": "Licht",
+        "Geometria": "Geometrie",
+        "Toxicidade": "Toxizität",
+        "Wi-Fi": "WLAN",
+        "Distorção temporal": "Zeitverzerrung",
+        "Ciclos": "Zyklen",
+        "Umidade": "Feuchtigkeit",
+        "Materiais": "Materialien",
+        "Classe": "Klasse",
+        "Tamanho": "Größe",
+        "Descoberto": "Entdeckt",
+        "Baixas": "Opfer"
+      }
+    }
+  };
+
+  function t(key) {
+    const lang = runtime.language;
+    return translations[lang]?.[key] || translations["pt-BR"][key] || key;
+  }
+
+  function tf(field) {
+    const lang = runtime.language;
+    return translations[lang]?.fields?.[field] || translations["pt-BR"].fields?.[field] || field;
+  }
 
   const dom = {};
 
@@ -259,6 +468,21 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
   // Renderer (DOM)
   // ============================================================
   function renderSidebar() {
+    // Atualizar labels estáticos da sidebar conforme idioma
+    if (dom.levelSearch) dom.levelSearch.placeholder = t("searchPlaceholder");
+    if (dom.prevLevel) dom.prevLevel.textContent = t("prev");
+    if (dom.nextLevel) dom.nextLevel.textContent = t("next");
+    if (dom.randomLevel) dom.randomLevel.textContent = t("random");
+    if (dom.audioToggle) dom.audioToggle.textContent = runtime.audioEnabled ? t("audioOn") : t("audioOff");
+    const statusEl = document.querySelector(".system-status");
+    if (statusEl) {
+      const statusSpan = statusEl.querySelector("span");
+      statusEl.firstChild.textContent = t("status").split(":")[0] + ": ";
+      if (statusSpan) statusSpan.textContent = t("status").split(": ")[1];
+    }
+    const searchLabel = document.querySelector('label[for="levelSearch"]');
+    if (searchLabel) searchLabel.textContent = t("searchLabel");
+
     const filtered = window.levels.filter((level) => {
       const term = runtime.searchTerm.trim().toLowerCase();
       if (!term) return true;
@@ -356,10 +580,10 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
   function createMetaStrip(level) {
     const strip = createNode("section", "meta-strip");
     const data = [
-      ["Classe", level.survivalClass.level],
-      ["Tamanho", level.size],
-      ["Descoberto", level.discoveryDate],
-      ["Baixas", level.casualtyCount]
+      [tf("Classe"), level.survivalClass.level],
+      [tf("Tamanho"), level.size],
+      [tf("Descoberto"), level.discoveryDate],
+      [tf("Baixas"), level.casualtyCount]
     ];
     const fragment = document.createDocumentFragment();
     data.forEach(([label, value]) => {
@@ -383,16 +607,16 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
   function createTechnicalGrid(level) {
     const dl = createNode("dl", "field-grid");
     const fields = [
-      ["Sanidade", level.sanityDrain],
-      ["Temperatura", level.avgTemperature],
-      ["Luz", level.lightingLevel],
-      ["Geometria", level.geometry],
-      ["Toxicidade", level.toxicity],
-      ["Wi-Fi", level.wifiSignal],
-      ["Distorção temporal", level.timeDistortion],
-      ["Ciclos", level.levelCycles],
-      ["Umidade", level.humidity],
-      ["Materiais", level.materials]
+      [tf("Sanidade"), level.sanityDrain],
+      [tf("Temperatura"), level.avgTemperature],
+      [tf("Luz"), level.lightingLevel],
+      [tf("Geometria"), level.geometry],
+      [tf("Toxicidade"), level.toxicity],
+      [tf("Wi-Fi"), level.wifiSignal],
+      [tf("Distorção temporal"), level.timeDistortion],
+      [tf("Ciclos"), level.levelCycles],
+      [tf("Umidade"), level.humidity],
+      [tf("Materiais"), level.materials]
     ];
     const fragment = document.createDocumentFragment();
     fields.forEach(([label, value]) => fragment.appendChild(makeField(label, value)));
@@ -526,7 +750,7 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
     headerGroup.appendChild(createNode("p", "hero-summary", summarizeLevel(level)));
 
     const lower = createNode("div");
-    lower.appendChild(createNode("p", "card-label", "Survival Classification"));
+    lower.appendChild(createNode("p", "card-label", t("survivalClass")));
     lower.appendChild(createNode("p", "hero-summary", `${level.survivalClass.level}: ${level.survivalClass.description}`));
     copy.appendChild(headerGroup);
     copy.appendChild(lower);
@@ -535,40 +759,40 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
     hero.appendChild(createImagePanel(level));
     dossier.appendChild(hero);
     dossier.appendChild(createMetaStrip(level));
-    dossier.appendChild(createCard("Descrição do Nível", level.overview));
+    dossier.appendChild(createCard(t("levelDescription"), level.overview));
     const tapePanel = createTapePanel(level);
     if (tapePanel) dossier.appendChild(tapePanel);
 
     const gridA = createNode("section", "grid-section");
-    gridA.appendChild(createCard("Entradas", level.entrances));
-    gridA.appendChild(createCard("Saídas", level.exits));
+    gridA.appendChild(createCard(t("entrances"), level.entrances));
+    gridA.appendChild(createCard(t("exits"), level.exits));
     dossier.appendChild(gridA);
 
     const gridB = createNode("section", "grid-section");
-    gridB.appendChild(createCard("Entidades", null, level.entities));
-    gridB.appendChild(createCard("Loot disponível", null, level.availableLoot));
+    gridB.appendChild(createCard(t("entities"), null, level.entities));
+    gridB.appendChild(createCard(t("loot"), null, level.availableLoot));
     dossier.appendChild(gridB);
 
-    const techCard = createCard("Telemetria Anômala");
+    const techCard = createCard(t("telemetry"));
     techCard.appendChild(createTechnicalGrid(level));
     dossier.appendChild(techCard);
 
     const gridC = createNode("section", "grid-section");
-    gridC.appendChild(createCard("Sons Ambientais", null, level.ambientSounds));
-    gridC.appendChild(createCard("Anomalias Físicas", null, level.physicalAnomalies));
+    gridC.appendChild(createCard(t("ambientSounds"), null, level.ambientSounds));
+    gridC.appendChild(createCard(t("physicalAnomalies"), null, level.physicalAnomalies));
     dossier.appendChild(gridC);
 
     const gridD = createNode("section", "grid-section");
-    gridD.appendChild(createCard("Outposts", null, level.outposts));
-    gridD.appendChild(createCard("Flora / Fauna", level.floraFauna));
+    gridD.appendChild(createCard(t("outposts"), null, level.outposts));
+    gridD.appendChild(createCard(t("floraFauna"), level.floraFauna));
     dossier.appendChild(gridD);
 
     const log = createNode("article", "data-card log-card");
-    log.appendChild(createNode("p", "card-label", "SURVIVOR LOG // recovered audio transcription"));
+    log.appendChild(createNode("p", "card-label", t("survivorLog")));
     log.appendChild(createNode("p", "", level.survivorLog));
     dossier.appendChild(log);
 
-    dossier.appendChild(createCard("Créditos do Registro", level.credits));
+    dossier.appendChild(createCard(t("credits"), level.credits));
     const egg = createEasterEggButton(level);
     if (egg) dossier.appendChild(egg);
 
@@ -700,6 +924,14 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
       renderSidebar();
     });
 
+    dom.langSelect.addEventListener("change", (event) => {
+      runtime.language = event.target.value;
+      localStorage.setItem("backrooms_lang", runtime.language);
+      playClickTone("click");
+      renderSidebar();
+      renderLevel(state.currentLevel);
+    });
+
     window.addEventListener("error", (event) => showFatalError(event.error || new Error(event.message)));
     window.addEventListener("unhandledrejection", (event) => showFatalError(event.reason));
   }
@@ -716,12 +948,14 @@ Pergunta de controle: esta escolha reforça ou dilui a filosofia de arquivo mili
     dom.nextLevel = $("nextLevel");
     dom.randomLevel = $("randomLevel");
     dom.audioToggle = $("audioToggle");
+    dom.langSelect = $("langSelect");
     dom.loadingOverlay = $("loadingOverlay");
     dom.loadingText = $("loadingText");
   }
 
   function init() {
     cacheDom();
+    if (dom.langSelect) dom.langSelect.value = runtime.language;
     const validationErrors = validateLevelsData(window.levels);
     if (validationErrors.length > 0) {
       showFatalError(new Error("Validação interna falhou."), validationErrors);

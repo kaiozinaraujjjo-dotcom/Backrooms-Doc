@@ -1862,17 +1862,17 @@ const levels = [
     "theme": "school",
     "overview": "Level 18 manifesta memórias de infância do wanderer, frequentemente como creche, pré-escola, quarto antigo ou corredor de escola. Cada pessoa vê um espaço diferente, íntimo e perigoso por manipular nostalgia e identidade.",
     "imageUrls": [
-      "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80"
+      "./assets/custom/level18-1.jpg",
+      "./assets/custom/level18-2.png",
+      "./assets/custom/level18-3.png"
     ],
-    "imageUrl": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1600&q=80",
+    "imageUrl": "./assets/custom/level18-1.jpg",
     "imageCredit": {
-      "source": "Unsplash / Pexels public visual references",
-      "title": "Visual reference for school liminal environment",
-      "page": "https://unsplash.com/ / https://www.pexels.com/",
-      "license": "Public stock-photo reference URL or repository-hosted public asset",
-      "artist": "Public contributor archive"
+      "source": "Backrooms Wiki / Community Archives",
+      "title": "Visual reference for Childhood Memory (Level 18)",
+      "page": "https://backrooms.fandom.com/wiki/Level_18",
+      "license": "Creative Commons Attribution-ShareAlike 3.0 License",
+      "artist": "Community Contributor"
     },
     "entities": [
       "Entidades moldadas por memória",
