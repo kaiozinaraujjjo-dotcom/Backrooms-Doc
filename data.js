@@ -1,8 +1,3 @@
-/*
-Backrooms Database — dados revisados.
-Mantém o estilo CRT/arquivo militar, mas substitui placeholders por imagens públicas coerentes e descrições alinhadas à lore clássica das Backrooms.
-*/
-
 const levels = [
   {
     "id": "frontrooms",
@@ -107,17 +102,15 @@ const levels = [
     "theme": "yellow",
     "overview": "Level 0 é o início clássico das Backrooms: salas monoamarelas, carpete úmido, papel de parede envelhecido e lâmpadas fluorescentes que zumbem sem fonte visível. O espaço é estimado em centenas de milhões de milhas quadradas e drena a orientação por repetição visual.",
     "imageUrls": [
-      "./assets/backrooms/yellow-hallway-1.jpg",
-      "./assets/backrooms/yellow-office-2.jpg",
-      "./assets/backrooms/yellow-corridor-3.jpg"
+      "./assets/wiki/level0.jpg"
     ],
-    "imageUrl": "./assets/backrooms/yellow-hallway-1.jpg",
+    "imageUrl": "./assets/wiki/level0.jpg",
     "imageCredit": {
-      "source": "Unsplash/Pexels public images stored as GitHub Pages assets",
-      "title": "Visual reference for yellow liminal environment",
-      "page": "https://unsplash.com/ / https://www.pexels.com/",
-      "license": "Public stock-photo reference URL or repository-hosted public asset",
-      "artist": "Public contributor archive"
+      "source": "Backrooms Wiki (Fandom)",
+      "title": "Official Level 0 Visual Record",
+      "page": "https://backrooms.fandom.com/wiki/Level_0",
+      "license": "CC-BY-SA",
+      "artist": "Wiki Community"
     },
     "entities": [
       "Howlers raros",
@@ -205,17 +198,15 @@ const levels = [
     "theme": "warehouse",
     "overview": "Level 1 é uma zona de armazéns, garagens e docas de concreto com suprimentos intermitentes. É mais utilizável que Level 0, porém mais perigoso durante apagões, quando Smilers, Hounds e ruídos de carga aparecem nos corredores.",
     "imageUrls": [
-      "./assets/backrooms/warehouse-dark-1.jpeg",
-      "./assets/backrooms/warehouse-concrete-2.jpeg",
-      "./assets/backrooms/warehouse-shelves-3.jpeg"
+      "./assets/wiki/level1.jpg"
     ],
-    "imageUrl": "./assets/backrooms/warehouse-dark-1.jpeg",
+    "imageUrl": "./assets/wiki/level1.jpg",
     "imageCredit": {
-      "source": "Unsplash/Pexels public images stored as GitHub Pages assets",
-      "title": "Visual reference for warehouse liminal environment",
-      "page": "https://unsplash.com/ / https://www.pexels.com/",
-      "license": "Public stock-photo reference URL or repository-hosted public asset",
-      "artist": "Public contributor archive"
+      "source": "Backrooms Wiki (Fandom)",
+      "title": "Official Level 1 Visual Record",
+      "page": "https://backrooms.fandom.com/wiki/Level_1",
+      "license": "CC-BY-SA",
+      "artist": "Wiki Community"
     },
     "entities": [
       "Smilers em apagões",
@@ -301,19 +292,17 @@ const levels = [
     "displayId": "LEVEL 002",
     "name": "Level 2 — Pipe Dreams",
     "theme": "pipes",
-    "overview": "Level 2 é uma rede claustrofóbica de túneis de manutenção, tubulações quentes, vapor pressurizado e passagens longas demais para a planta física fazer sentido. O calor, a falta de rotas limpas e Smilers tornam a permanência prolongada arriscada.",
+    "overview": "Level 2 é composto por longos corredores de serviço com tubulações industriais que transportam fluidos desconhecidos. O calor é intenso e o som de máquinas distantes é constante. É um nível perigoso pela arquitetura claustrofóbica e risco de queimaduras.",
     "imageUrls": [
-      "./assets/backrooms/pipes-dark-1.jpg",
-      "./assets/backrooms/pipes-industrial-2.jpg",
-      "./assets/backrooms/pipes-close-3.jpg"
+      "./assets/wiki/level2.jpg"
     ],
-    "imageUrl": "./assets/backrooms/pipes-dark-1.jpg",
+    "imageUrl": "./assets/wiki/level2.jpg",
     "imageCredit": {
-      "source": "Unsplash/Pexels public images stored as GitHub Pages assets",
-      "title": "Visual reference for pipes liminal environment",
-      "page": "https://unsplash.com/ / https://www.pexels.com/",
-      "license": "Public stock-photo reference URL or repository-hosted public asset",
-      "artist": "Public contributor archive"
+      "source": "Backrooms Wiki (Fandom)",
+      "title": "Official Level 2 Visual Record",
+      "page": "https://backrooms.fandom.com/wiki/Level_2",
+      "license": "CC-BY-SA",
+      "artist": "Wiki Community"
     },
     "entities": [
       "Smilers",
@@ -398,20 +387,18 @@ const levels = [
     "key": "level-3",
     "displayId": "LEVEL 003",
     "name": "Level 3 — Electrical Station",
-    "theme": "pipes",
-    "overview": "Level 3 é composto por corredores técnicos, painéis elétricos, cabos energizados e salas de máquinas. A interferência eletromagnética corrompe gravações e as entidades usam o ruído industrial como cobertura.",
+    "theme": "industrial",
+    "overview": "Level 3 é um labirinto de salas de máquinas, geradores e fiação exposta. O ambiente é barulhento e o ar cheira a ozônio e metal queimado. É um dos níveis mais perigosos devido às entidades agressivas e riscos elétricos.",
     "imageUrls": [
-      "./assets/backrooms/pipes-dark-1.jpg",
-      "./assets/backrooms/pipes-industrial-2.jpg",
-      "./assets/backrooms/pipes-close-3.jpg"
+      "./assets/wiki/level3.jpg"
     ],
-    "imageUrl": "./assets/backrooms/pipes-dark-1.jpg",
+    "imageUrl": "./assets/wiki/level3.jpg",
     "imageCredit": {
-      "source": "Unsplash/Pexels public images stored as GitHub Pages assets",
-      "title": "Visual reference for pipes liminal environment",
-      "page": "https://unsplash.com/ / https://www.pexels.com/",
-      "license": "Public stock-photo reference URL or repository-hosted public asset",
-      "artist": "Public contributor archive"
+      "source": "Backrooms Wiki (Fandom)",
+      "title": "Official Level 3 Visual Record",
+      "page": "https://backrooms.fandom.com/wiki/Level_3",
+      "license": "CC-BY-SA",
+      "artist": "Wiki Community"
     },
     "entities": [
       "Smilers",
@@ -497,19 +484,17 @@ const levels = [
     "displayId": "LEVEL 004",
     "name": "Level 4 — Abandoned Office",
     "theme": "office",
-    "overview": "Level 4 lembra um escritório corporativo abandonado: cubículos vazios, carpete seco, janelas sem exterior consistente e máquinas de venda que às vezes fornecem água de amêndoas. É um dos primeiros níveis relativamente habitáveis.",
+    "overview": "Level 4 assemelha-se a um prédio de escritórios vazio e infinito. É um dos níveis mais seguros, com janelas que mostram apenas escuridão externa, mas com abundância de água de amêndoas e suprimentos deixados por outros wanderers.",
     "imageUrls": [
-      "./assets/backrooms/office-empty-1.jpeg",
-      "./assets/backrooms/office-abandoned-2.jpeg",
-      "./assets/backrooms/office-ruin-3.jpeg"
+      "./assets/wiki/level4.jpg"
     ],
-    "imageUrl": "./assets/backrooms/office-empty-1.jpeg",
+    "imageUrl": "./assets/wiki/level4.jpg",
     "imageCredit": {
-      "source": "Unsplash/Pexels public images stored as GitHub Pages assets",
-      "title": "Visual reference for office liminal environment",
-      "page": "https://unsplash.com/ / https://www.pexels.com/",
-      "license": "Public stock-photo reference URL or repository-hosted public asset",
-      "artist": "Public contributor archive"
+      "source": "Backrooms Wiki (Fandom)",
+      "title": "Official Level 4 Visual Record",
+      "page": "https://backrooms.fandom.com/wiki/Level_4",
+      "license": "CC-BY-SA",
+      "artist": "Wiki Community"
     },
     "entities": [
       "Facelings ocasionais",
@@ -594,19 +579,17 @@ const levels = [
     "displayId": "LEVEL 005",
     "name": "Level 5 — Terror Hotel",
     "theme": "hotel",
-    "overview": "Level 5 é um hotel antigo e escuro com salões, corredores longos, restaurantes vazios e uma sensação de luxo apodrecido. O lugar é instável, elegante e predatório, com áreas conhecidas por mudar de arquitetura.",
+    "overview": "Level 5 é um hotel luxuoso de estilo vitoriano, mas com corredores infinitos e uma atmosfera opressiva. O som de jazz distante toca em salas vazias, e o 'Beast of Level 5' é a principal ameaça que habita as áreas mais profundas.",
     "imageUrls": [
-      "./assets/backrooms/hotel-dark-1.jpg",
-      "./assets/backrooms/hotel-corridor-2.jpg",
-      "./assets/backrooms/hotel-empty-3.jpg"
+      "./assets/wiki/level5.jpg"
     ],
-    "imageUrl": "./assets/backrooms/hotel-dark-1.jpg",
+    "imageUrl": "./assets/wiki/level5.jpg",
     "imageCredit": {
-      "source": "Unsplash/Pexels public images stored as GitHub Pages assets",
-      "title": "Visual reference for hotel liminal environment",
-      "page": "https://unsplash.com/ / https://www.pexels.com/",
-      "license": "Public stock-photo reference URL or repository-hosted public asset",
-      "artist": "Public contributor archive"
+      "source": "Backrooms Wiki (Fandom)",
+      "title": "Official Level 5 Visual Record",
+      "page": "https://backrooms.fandom.com/wiki/Level_5",
+      "license": "CC-BY-SA",
+      "artist": "Wiki Community"
     },
     "entities": [
       "Deathmoths",
@@ -10053,101 +10036,6 @@ const levels = [
     ]
   },
   {
-    "id": "!",
-    "key": "special-bang",
-    "displayId": "LEVEL !",
-    "name": "Level ! — Run For Your Life",
-    "theme": "hotel",
-    "overview": "Level !, conhecido como Run For Your Life, manifesta um corredor vermelho-branco aparentemente infinito no qual o wanderer precisa correr sem parar enquanto entidades avançam atrás dele. Parar costuma significar morte.",
-    "imageUrls": [
-      "./assets/backrooms/hotel-dark-1.jpg",
-      "./assets/backrooms/hotel-corridor-2.jpg",
-      "./assets/backrooms/hotel-empty-3.jpg"
-    ],
-    "imageUrl": "./assets/backrooms/hotel-dark-1.jpg",
-    "imageCredit": {
-      "source": "Unsplash/Pexels public images stored as GitHub Pages assets",
-      "title": "Visual reference for hotel liminal environment",
-      "page": "https://unsplash.com/ / https://www.pexels.com/",
-      "license": "Public stock-photo reference URL or repository-hosted public asset",
-      "artist": "Public contributor archive"
-    },
-    "entities": [
-      "Horda não catalogada",
-      "Smilers",
-      "Hounds"
-    ],
-    "entrances": "Acesso não cronológico por noclip raro, portas simbólicas, rotas impossíveis ou transições documentadas por wanderers avançados.",
-    "exits": "Saídas dependem da regra interna do nível; muitas portas são armadilhas ou retornos para níveis centrais.",
-    "size": "Não cronológico; escala variável e frequentemente impossível de medir.",
-    "survivalClass": {
-      "level": "Classe 5",
-      "description": "Extremamente hostil, mortal ou psicologicamente destrutivo."
-    },
-    "credits": "Registro especial solicitado para o Backrooms Database, separado da ordem 000–100.",
-    "sanityDrain": "Variável extrema; recomenda-se entrada apenas com propósito claro e rota de retirada.",
-    "availableLoot": [
-      "Chaves antigas",
-      "Toalhas",
-      "Comida enlatada",
-      "Água de amêndoas"
-    ],
-    "outposts": [
-      "Sem outpost permanente confiável",
-      "Marcações isoladas de wanderers"
-    ],
-    "avgTemperature": "Instável",
-    "lightingLevel": "Determinado pela anomalia central do nível.",
-    "geometry": "Level !, conhecido como Run For Your Life, manifesta um corredor vermelho-branco aparentemente infinito no qual o wanderer precisa correr sem parar enquanto entidades avançam atrás dele. Parar costuma significar morte.",
-    "ambientSounds": [
-      "Interferência",
-      "Ecos de passos",
-      "Sinais que parecem responder ao observador"
-    ],
-    "survivorLog": "Registro especial: 'LEVEL ! não obedece à sequência normal. Quando tentei descrevê-lo, a própria fita substituiu minhas palavras por ruído.'",
-    "toxicity": "Risco anômalo alto, mesmo quando o ambiente parece seguro.",
-    "wifiSignal": "Sinal fragmentado 'LEVEL_!_SPECIAL'.",
-    "discoveryDate": "Indeterminado",
-    "casualtyCount": "Desconhecido",
-    "timeDistortion": "Severa ou conceitual.",
-    "physicalAnomalies": [
-      "Causalidade instável",
-      "Portas simbólicas",
-      "Registros apagados ou reescritos"
-    ],
-    "floraFauna": "Incompatível com biologia comum; manifestações variam.",
-    "levelCycles": "Sem ciclo confiável.",
-    "humidity": "Indeterminada",
-    "materials": [
-      "Material liminal",
-      "Concreto",
-      "Luz anômala",
-      "Ruído visual"
-    ],
-    "themeColors": {
-      "bg": "#110606",
-      "text": "#FFE6D6",
-      "accent": "#C44536"
-    },
-    "easterEgg": true,
-    "videoTapes": [
-      {
-        "type": "youtube_search",
-        "id": "level+!++run+for+your+life+backrooms+found+footage",
-        "label": "TAPE-AUTO-01",
-        "title": "Level ! — Run For Your Life found footage search",
-        "url": "https://www.youtube.com/results?search_query=level+!++run+for+your+life+backrooms+found+footage"
-      },
-      {
-        "type": "youtube_search_embed",
-        "id": "level+!++run+for+your+life+backrooms+found+footage",
-        "label": "TAPE-AUTO-02",
-        "title": "Level ! — Run For Your Life recovered tape feed",
-        "url": "https://www.youtube.com/embed?listType=search&list=level+!++run+for+your+life+backrooms+found+footage"
-      }
-    ]
-  },
-  {
     "id": 404,
     "key": "special-404",
     "displayId": "LEVEL 404",
@@ -10522,98 +10410,11 @@ const levels = [
     ]
   },
   {
-    "id": "the-end",
-    "key": "special-the-end",
-    "displayId": "THE END",
-    "name": "The End — False Termination Archive",
-    "theme": "office",
-    "overview": "The End se apresenta como encerramento, biblioteca, sala de computadores ou terminal de saída. Na lore clássica é um falso final: a promessa de conclusão pode prender o wanderer em loops de informação.",
-    "imageUrls": [
-      "./assets/backrooms/office-empty-1.jpeg",
-      "./assets/backrooms/office-abandoned-2.jpeg",
-      "./assets/backrooms/office-ruin-3.jpeg"
-    ],
-    "imageUrl": "./assets/backrooms/office-empty-1.jpeg",
-    "imageCredit": {
-      "source": "Unsplash/Pexels public images stored as GitHub Pages assets",
-      "title": "Visual reference for office liminal environment",
-      "page": "https://unsplash.com/ / https://www.pexels.com/",
-      "license": "Public stock-photo reference URL or repository-hosted public asset",
-      "artist": "Public contributor archive"
-    },
-    "entities": [
-      "Facelings silenciosos",
-      "Terminais conscientes"
-    ],
-    "entrances": "Acesso não cronológico por noclip raro, portas simbólicas, rotas impossíveis ou transições documentadas por wanderers avançados.",
-    "exits": "Saídas dependem da regra interna do nível; muitas portas são armadilhas ou retornos para níveis centrais.",
-    "size": "Não cronológico; escala variável e frequentemente impossível de medir.",
-    "survivalClass": {
-      "level": "Classe variável",
-      "description": "A ameaça muda conforme memória, rota, ciclo ou comportamento do wanderer."
-    },
-    "credits": "Registro especial solicitado para o Backrooms Database, separado da ordem 000–100.",
-    "sanityDrain": "Variável extrema; recomenda-se entrada apenas com propósito claro e rota de retirada.",
-    "availableLoot": [
-      "Água de amêndoas",
-      "Papéis de mapa",
-      "Canetas",
-      "Cabos"
-    ],
-    "outposts": [
-      "Sem outpost permanente confiável",
-      "Marcações isoladas de wanderers"
-    ],
-    "avgTemperature": "Instável",
-    "lightingLevel": "Determinado pela anomalia central do nível.",
-    "geometry": "The End se apresenta como encerramento, biblioteca, sala de computadores ou terminal de saída. Na lore clássica é um falso final: a promessa de conclusão pode prender o wanderer em loops de informação.",
-    "ambientSounds": [
-      "Interferência",
-      "Ecos de passos",
-      "Sinais que parecem responder ao observador"
-    ],
-    "survivorLog": "Registro especial: 'THE END não obedece à sequência normal. Quando tentei descrevê-lo, a própria fita substituiu minhas palavras por ruído.'",
-    "toxicity": "Risco anômalo alto, mesmo quando o ambiente parece seguro.",
-    "wifiSignal": "Sinal fragmentado 'THE_END_SPECIAL'.",
-    "discoveryDate": "Indeterminado",
-    "casualtyCount": "Desconhecido",
-    "timeDistortion": "Severa ou conceitual.",
-    "physicalAnomalies": [
-      "Causalidade instável",
-      "Portas simbólicas",
-      "Registros apagados ou reescritos"
-    ],
-    "floraFauna": "Incompatível com biologia comum; manifestações variam.",
-    "levelCycles": "Sem ciclo confiável.",
-    "humidity": "Indeterminada",
-    "materials": [
-      "Material liminal",
-      "Concreto",
-      "Luz anômala",
-      "Ruído visual"
-    ],
-    "themeColors": {
-      "bg": "#071008",
-      "text": "#D7F6B0",
-      "accent": "#8FCE5D"
-    },
-    "easterEgg": true,
-    "videoTapes": [
-      {
-        "type": "youtube_search",
-        "id": "the+end++false+termination+archive+backrooms+found+footage",
-        "label": "TAPE-AUTO-01",
-        "title": "The End — False Termination Archive found footage search",
-        "url": "https://www.youtube.com/results?search_query=the+end++false+termination+archive+backrooms+found+footage"
-      },
-      {
-        "type": "youtube_search_embed",
-        "id": "the+end++false+termination+archive+backrooms+found+footage",
-        "label": "TAPE-AUTO-02",
-        "title": "The End — False Termination Archive recovered tape feed",
-        "url": "https://www.youtube.com/embed?listType=search&list=the+end++false+termination+archive+backrooms+found+footage"
-      }
-    ]
+    "type": "youtube_search",
+    "id": "the+end++false+termination+archive+backrooms+found+footage",
+    "label": "TAPE-AUTO-01",
+    "title": "The End — False Termination Archive found footage search",
+    "url": "https://www.youtube.com/results?search_query=the+end++false+termination+archive+backrooms+found+footage"
   },
   {
     "id": -33,
